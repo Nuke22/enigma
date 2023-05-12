@@ -115,17 +115,30 @@ def encrypt (message):
         click1 = i // 26
         click2 = i // 676
         final_position_of_rotors = get_rotors_with_offset(rotors, offsets)
-        
         final_position_of_rotors[0] = final_position_of_rotors[0][click0:] + final_position_of_rotors[0][:click0]
         final_position_of_rotors[1] = final_position_of_rotors[1][click1:] + final_position_of_rotors[1][:click1]
         final_position_of_rotors[2] = final_position_of_rotors[2][click2:] + final_position_of_rotors[2][:click2]
         
-        line = 
-                
-    #decypher them due to (new or old) alphabet
-    
-    # for i in range(0, 26):
+        step1 = message_decimal[i]
+        step2 = final_position_of_rotors[0][step1]
+        step3 = final_position_of_rotors[1][step2]
+        step4 = final_position_of_rotors[2][step3]
+        step5 = connector[step4]
+        step6 = final_position_of_rotors[2][step5]
+        step7 = final_position_of_rotors[1][step6]
+        step8 = final_position_of_rotors[0][step7]
         
+        encripted_message_decimal.append(step8)
+    print(f"encrypted_mesage_decimal = {encripted_message_decimal}")
+                
+    # decypher them due to (new or old) alphabet ---------------------------------------------------------
+    encrypted_mesage = []
+    for i in range(0, len(encripted_message_decimal)):
+        pos = encripted_message_decimal[i]
+        letter = swaped_alphabet[pos]
+        encrypted_mesage.append(letter)
+    print(f"encrypted message = {encrypted_mesage}")
+    return encrypted_mesage
 
  
 def decrypt (messpassage):
