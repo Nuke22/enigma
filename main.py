@@ -92,16 +92,14 @@ def get_rotors_with_offset (rotors, offsets):
         final_set_of_rotors.append(actual_rotor_with_offset)
     return final_set_of_rotors
    
-
-def encrypt (message):
-    swaped_alphabet = get_swapped_alphabet(alphabet, swap)    
+def encrypt (message):  
     #transform message into numbers due to new alphabet
     message_decimal = []
     for i in range(0, len(message)):
         letter = message[i]
         letter_index = swaped_alphabet.index(letter)
         message_decimal.append(letter_index)
-    print(message_decimal)
+    print(f"message_decimal = {message_decimal}")
     
     #pass every other letter through wheels
     i = 0
@@ -110,40 +108,51 @@ def encrypt (message):
     click2 = 0
     encripted_message_decimal = []
     # imitating rotation of rotors
+    
+    #debug - clear
+    final_position_of_rotors = get_rotors_with_offset(rotors, offsets)
+    print(f"\n\nstarting array = {final_position_of_rotors}\n")
+    #debug - clear
     while i < len(message):
         click0 = i % 26
         click1 = i // 26
         click2 = i // 676
         final_position_of_rotors = get_rotors_with_offset(rotors, offsets)
         final_position_of_rotors[0] = final_position_of_rotors[0][click0:] + final_position_of_rotors[0][:click0]
+        print(f"final position of rotor 0 = {final_position_of_rotors[0]}")
         final_position_of_rotors[1] = final_position_of_rotors[1][click1:] + final_position_of_rotors[1][:click1]
+        print(f"final position of rotor 1 = {final_position_of_rotors[1]}")
         final_position_of_rotors[2] = final_position_of_rotors[2][click2:] + final_position_of_rotors[2][:click2]
+        print(f"final position of rotor 2 = {final_position_of_rotors[2]}")
         
-        step1 = message_decimal[i]
-        step2 = final_position_of_rotors[0][step1]
-        step3 = final_position_of_rotors[1][step2]
-        step4 = final_position_of_rotors[2][step3]
+        step1 = message_decimal[i]          
+        step2 = final_position_of_rotors[0][step1]          
+        step3 = final_position_of_rotors[1][step2]          
+        step4 = final_position_of_rotors[2][step3]          
         step5 = connector[step4]
-        step6 = final_position_of_rotors[2][step5]
-        step7 = final_position_of_rotors[1][step6]
-        step8 = final_position_of_rotors[0][step7]
-        
+        step6 = final_position_of_rotors[2][step5]          
+        step7 = final_position_of_rotors[1][step6]          
+        step8 = final_position_of_rotors[0][step7]          
+        print(f"step1 = {step1} \nstep2 = {step2}\nstep3 = {step3}\nstep4 = {step4}\nstep5 = {step5}\nstep6 = {step6}\nstep7 = {step7}\nstep8 = {step8}")
         encripted_message_decimal.append(step8)
+        i += 1
     print(f"encrypted_mesage_decimal = {encripted_message_decimal}")
+    #still flawlwss
+    
                 
     # decypher them due to (new or old) alphabet ---------------------------------------------------------
-    encrypted_mesage = []
+    encrypted_mesage_list = []
     for i in range(0, len(encripted_message_decimal)):
         pos = encripted_message_decimal[i]
         letter = swaped_alphabet[pos]
-        encrypted_mesage.append(letter)
+        encrypted_mesage_list.append(letter)
+    encrypted_mesage = "".join(encrypted_mesage_list)
     print(f"encrypted message = {encrypted_mesage}")
     return encrypted_mesage
 
  
 def decrypt (messpassage):
     swaped_alphabet = get_swapped_alphabet(alphabet, swap)
-    final_position_of_rotors = get_rotors_with_offset(rotors, offsets)
     
     
     
@@ -167,7 +176,8 @@ swap = ["A", "B"]
 rotors = [1, 2, 3]
 offsets = [0, 0, 0]
 print(f"\nSetup is complete! \nswap   = {swap}\nrotors = {rotors}\noffsets = {offsets}")
-
+swaped_alphabet = get_swapped_alphabet(alphabet, swap) 
+print(f"Swaped alphabet = {swaped_alphabet}") 
 # main
 while True:
     process = input("\nEncrypt or decrypt? (e/d): ")
@@ -175,8 +185,9 @@ while True:
     if process.lower() == "encrypt" or process.lower() == "e":
         print("You are in the encription mode!")
         message = input("Enter a message you want to encrypt: ").upper().strip()
-        print(f"Your message is: {message}")
-        encrypt(message)
+        print(f"\nYour original message is: {message}")
+        result = encrypt(message)
+        print(f"Your encripted mesage is:--------------------------- {result}")
         
     elif process.lower() == "decrypt" or process.lower() == "d":
         print("You are in the decription mode!")    
