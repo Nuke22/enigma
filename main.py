@@ -142,7 +142,7 @@ def encrypt (message):
     answer = decimal_to_message(encrypted_message_decimal)
     return answer
 
-def decrypt (messpassage):
+def decrypt (message):
     # transform message into numbers due to new alphabet
     message_decimal = message_to_decimal(message)
     
