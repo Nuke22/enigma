@@ -2,7 +2,7 @@ def choose_swap ():
     swap_array = []
     swaps_done = 1
     swaps_amount = int(input("How many latter swaps do you want to perform?: "))
-    for i in range(0, swaps_amount):
+    while swaps_done <= swaps_amount:
         swap_pair = input(f"Please enter what pair of letter you want to swap? ({swaps_done}/{swaps_amount}) (Remember, you can not mention the same letter twice!): ")
         first_swap_letter = swap_pair[0].upper()
         last_swap_letter = swap_pair[-1].upper()
