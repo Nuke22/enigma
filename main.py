@@ -62,7 +62,7 @@ def get_swapped_alphabet (alphabet, swap):
     for i in range(0, int(len(swap)/2)):
         j = i*2
         alphabet[swap_position[j]], alphabet[swap_position[j+1]] = alphabet[swap_position[j+1]], alphabet[swap_position[j]] 
-    # print(f"Swaped alphabet = {alphabet}")
+    # print(f"Swapped alphabet = {alphabet}")
     return alphabet
     
 def get_rotors_with_offset (rotors, offsets):
@@ -88,7 +88,7 @@ def message_to_decimal (message):
     message_decimal = []
     for i in range(0, len(message)):
         letter = message[i]
-        letter_index = swaped_alphabet.index(letter)
+        letter_index = swapped_alphabet.index(letter)
         message_decimal.append(letter_index)
     # print(f"message_decimal = {message_decimal}")
     return message_decimal
@@ -97,7 +97,7 @@ def decimal_to_message (decimal):
     mesage_list = []
     for i in range(0, len(decimal)):
         pos = decimal[i]
-        letter = swaped_alphabet[pos]
+        letter = swapped_alphabet[pos]
         mesage_list.append(letter)
     message = "".join(mesage_list)
     # print(f"message = {message}")
@@ -135,7 +135,7 @@ def encrypt (message):
         # print(f"step1 = {step1} \nstep2 = {step2}\nstep3 = {step3}\nstep4 = {step4}\nstep5 = {step5}\nstep6 = {step6}\nstep7 = {step7}\nstep8 = {step8}\n")
         encrypted_message_decimal.append(step8)
         i += 1
-    print(f"encrypted_mesage_decimal = {encrypted_message_decimal}")
+    # print(f"encrypted_mesage_decimal = {encrypted_message_decimal}")
     
                 
     # decypher them due to new alphabet
@@ -194,26 +194,26 @@ rotors = choose_rotors()
 offsets = choose_offsets()
 print(f"\nSetup is complete! \nswap   = {swap}\nrotors = {rotors}\noffsets = {offsets}")
 
-swaped_alphabet = get_swapped_alphabet(alphabet, swap) 
-# print(f"Swaped alphabet = {swaped_alphabet}") 
+swapped_alphabet = get_swapped_alphabet(alphabet, swap) 
+# print(f"Swapped alphabet = {swapped_alphabet}") 
 
 # main
 while True:
     process = input("\nEncrypt or decrypt? (e/d): ")
     
     if process.lower() == "encrypt" or process.lower() == "e":
-        print("You are in the encription mode!")
+        print("You are in the encryption mode!")
         message = input("Enter a message you want to encrypt: ").upper().strip()
         print(f"\nYour original message is: {message}")
         result = encrypt(message)
-        print(f"Your encripted mesage is:--------------------------- {result}")
+        print(f"Your encrypted message is:{result}")
         
     elif process.lower() == "decrypt" or process.lower() == "d":
-        print("You are in the decription mode!")    
+        print("You are in the decryption mode!")    
         message = input("Enter a message you want to decrypt:").upper().strip()
         print(f"Your message is: {message}")
         result = decrypt(message)
-        print(f"Your decrypted mesage is:--------------------------- {result}")
+        print(f"Your decrypted message is: {result}")
         
     else: 
         quit = input("Input is not valid! Do you want to quit? All settings will be discarded... (y/n): ")
