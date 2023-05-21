@@ -3,12 +3,12 @@ def choose_swap ():
     swaps_done = 1
     swaps_amount = int(input("How many latter swaps do you want to perform?: "))
     while swaps_done <= swaps_amount:
-        swap_pair = input(f"Please enter what pair of letter you want to swap? ({swaps_done}/{swaps_amount}) (Remember, you can not mention the same letter twice!): ")
+        swap_pair = input(f"\nPlease enter what pair of letters you want to swap? ({swaps_done}/{swaps_amount}) (Remember, you can not mention the same letter twice!): ")
         first_swap_letter = swap_pair[0].upper()
         last_swap_letter = swap_pair[-1].upper()
         #check if the input contains only letters
         if first_swap_letter.isalpha() and last_swap_letter.isalpha():
-            print(f"\nThe first letter is {first_swap_letter}, \nThe second one is {last_swap_letter}\n")
+            print(f"\nThe first letter is {first_swap_letter}, \nThe second one is {last_swap_letter}")
             
             #check if the input does not contain duplicates
             if first_swap_letter in swap_array or last_swap_letter in swap_array or first_swap_letter == last_swap_letter:
@@ -17,10 +17,10 @@ def choose_swap ():
                 swap_array.append(first_swap_letter)
                 swap_array.append(last_swap_letter)
                 swaps_done += 1
-                print(f"These letters will be swapped {swap_array}")
         else: 
             print("At least one of the elements is not a character! Discarding this input. Try again \n")
  
+    print(f"These letters will be swapped: {swap_array}")
     return swap_array
 
 def choose_rotors ():
@@ -48,7 +48,7 @@ def choose_offsets ():
             offset_array.append(offset)
             i += 1
         else:
-            print("You can not use offset bigger than 25")
+            print("You can not use offset bigger than 25 or smaller than 0")
     print(f"Your offsets are {offset_array}")
     return offset_array
 
