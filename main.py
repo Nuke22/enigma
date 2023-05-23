@@ -135,10 +135,10 @@ def encrypt (message):
         # print(f"step1 = {step1} \nstep2 = {step2}\nstep3 = {step3}\nstep4 = {step4}\nstep5 = {step5}\nstep6 = {step6}\nstep7 = {step7}\nstep8 = {step8}\n")
         encrypted_message_decimal.append(step8)
         i += 1
-    # print(f"encrypted_mesage_decimal = {encrypted_message_decimal}")
+    # print(f"encrypted_message_decimal = {encrypted_message_decimal}")
     
                 
-    # decypher them due to new alphabet
+    # decipher them due to new alphabet
     answer = decimal_to_message(encrypted_message_decimal)
     return answer
 
@@ -173,9 +173,9 @@ def decrypt (message):
         # print(f"step1 = {step1} \nstep2 = {step2}\nstep3 = {step3}\nstep4 = {step4}\nstep5 = {step5}\nstep6 = {step6}\nstep7 = {step7}\nstep8 = {step8}")
         decrypted_message_decimal.append(step8)
         i += 1
-    print(f"decrypted_mesage_decimal = {decrypted_message_decimal}")
+    # print(f"decrypted_message_decimal = {decrypted_message_decimal}")
     
-    # decypher them due to new alphabet 
+    # decipher them due to new alphabet 
     answer = decimal_to_message(decrypted_message_decimal)
     return answer
     
